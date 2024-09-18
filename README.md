@@ -1,1 +1,1 @@
-# hr.cv.pool
+# .NetCore 8 Generic Repository & Unit of Work
