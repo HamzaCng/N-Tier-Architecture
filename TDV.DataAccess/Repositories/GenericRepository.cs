@@ -19,6 +19,7 @@ namespace TDV.DataAccess.Repositories
 
             if (entityEntry.State == EntityState.Added)
             {
+                entity.CreateDate = DateTime.Now;
                 await context.SaveChangesAsync();
                 return true;
             }
