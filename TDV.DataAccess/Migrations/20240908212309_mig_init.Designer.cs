@@ -11,7 +11,7 @@ using TDV.DataAccess.Context;
 
 namespace TDV.DataAccess.Migrations
 {
-    [DbContext(typeof(CvDbContext))]
+    [DbContext(typeof(TestDbContext))]
     [Migration("20240908212309_mig_init")]
     partial class mig_init
     {

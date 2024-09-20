@@ -10,4 +10,8 @@
     <ProjectReference Include="..\TDV.Entity\TDV.Entity.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

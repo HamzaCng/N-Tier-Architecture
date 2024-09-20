@@ -3,9 +3,9 @@ using TDV.Entity.Entities.Users;
 
 namespace TDV.DataAccess.Context
 {
-    public class CvDbContext : DbContext
+    public class TestDbContext : DbContext
     {
-        public CvDbContext(DbContextOptions options) : base(options) { }      
+        public TestDbContext(DbContextOptions options) : base(options) { }      
 
         public DbSet<User> Users {  get; set; } 
     }

@@ -13,7 +13,7 @@ namespace TDV.Application.Users
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public UserService(CvDbContext context, IUnitOfWork unitOfWork, IMapper mapper) : base(context)
+        public UserService(TestDbContext context, IUnitOfWork unitOfWork, IMapper mapper) : base(context)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;

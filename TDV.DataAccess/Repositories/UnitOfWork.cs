@@ -4,7 +4,7 @@ using TDV.Entity.Entities.Users;
 
 namespace TDV.DataAccess.Repositories
 {
-    public class UnitOfWork(CvDbContext context) : IUnitOfWork
+    public class UnitOfWork(TestDbContext context) : IUnitOfWork
     {
         private IRepository<User> _users;      
 

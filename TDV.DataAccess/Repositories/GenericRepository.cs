@@ -7,7 +7,7 @@ using TDV.DataAccess.Context;
 
 namespace TDV.DataAccess.Repositories
 {
-    public class GenericRepository<T>(CvDbContext context) : IRepository<T> where T : BaseEntity
+    public class GenericRepository<T>(TestDbContext context) : IRepository<T> where T : BaseEntity
     {
         //Her seferinde set etmemek için.
         public DbSet<T> Table { get => context.Set<T>(); }

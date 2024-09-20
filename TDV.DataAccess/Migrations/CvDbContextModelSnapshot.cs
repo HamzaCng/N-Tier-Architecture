@@ -10,7 +10,7 @@ using TDV.DataAccess.Context;
 
 namespace TDV.DataAccess.Migrations
 {
-    [DbContext(typeof(CvDbContext))]
+    [DbContext(typeof(TestDbContext))]
     partial class CvDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
