@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using TDV.Application;
 using TDV.Application.Shared.Authentications;
+using TDV.Application.Shared.Users;
 using TDV.Application.Users;
 using TDV.DataAccess.Abstract;
 using TDV.DataAccess.Context;
@@ -25,7 +26,7 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
 #region Services ______________________________________________________________
 
-builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 #endregion
 

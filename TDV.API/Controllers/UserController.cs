@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TDV.Application.Shared.Users;
 using TDV.Application.Shared.Users.Dtos;
 using TDV.Application.Users;
 using TDV.Entity.Entities.Users;
@@ -9,9 +10,9 @@ namespace TDV.API.Controllers
     [ApiController]
     public class UserController : Controller
     {
-        private readonly UserService _userSevice;
+        private readonly IUserService _userSevice;
 
-        public UserController(UserService userSevice)
+        public UserController(IUserService userSevice)
         {
             _userSevice = userSevice;
         }
