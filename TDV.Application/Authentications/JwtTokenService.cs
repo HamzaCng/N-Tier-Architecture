@@ -62,5 +62,9 @@ public class JwtTokenService : GenericRepository<RefreshToken>, IJwtTokenService
             };
         }
     }
- 
+
+    public async Task SaveRefreshTokenAsync(RefreshToken token)
+    {
+        await _unitOfWork.RefreshTokens.AddAsync(token);
+    }
 }

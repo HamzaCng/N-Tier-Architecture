@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity.Data;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TDV.Application.Shared.Authentications;
 using TDV.Entity.Entities.Authentications;
 
@@ -17,16 +16,16 @@ namespace TDV.API.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody]  Login request)
-        {            
+        public async Task<IActionResult> LoginAsync([FromBody] Login request)
+        {
             if (request.Username == "test" && request.Password == "1234")
             {
                 var accessToken = _jwtTokenService.GenerateToken("1", request.Username);
                 var refreshToken = _jwtTokenService.GenerateRefreshToken();
 
-                // Refresh token'ı veritabanına kaydet
-                refreshToken.UserId = "1";
-                //await _refreshTokenRepository.SaveRefreshTokenAsync(refreshToken);
+               
+                refreshToken.UserId = "1"; //login olan user id'si Session'dan al
+                await _jwtTokenService.SaveRefreshTokenAsync(refreshToken);
 
                 return Ok(new
                 {
