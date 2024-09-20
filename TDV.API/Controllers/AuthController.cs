@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity.Data;
+using Microsoft.AspNetCore.Mvc;
 using TDV.Application.Shared.Authentications;
 using TDV.Entity.Entities.Authentications;
 
@@ -23,7 +24,7 @@ namespace TDV.API.Controllers
                 var accessToken = _jwtTokenService.GenerateToken("1", request.Username);
                 var refreshToken = _jwtTokenService.GenerateRefreshToken();
 
-               
+
                 refreshToken.UserId = "1"; //login olan user id'si Session'dan al
                 await _jwtTokenService.SaveRefreshTokenAsync(refreshToken);
 
@@ -35,6 +36,27 @@ namespace TDV.API.Controllers
             }
 
             return Unauthorized();
+        }
+
+
+        [HttpPost("refresh")]
+        public async Task<IActionResult> Refresh([FromBody] RefreshRequest request)
+        {
+            var storedRefreshToken = await _jwtTokenService.GetRefreshTokenAsync(request.RefreshToken);
+
+            if (storedRefreshToken == null || storedRefreshToken.IsUsed || storedRefreshToken.IsRevoked || storedRefreshToken.ExpiryDate < DateTime.Now)
+            {
+                return Unauthorized("Geçersiz refresh token.");
+            }
+
+            // Refresh token geçerli, yeni bir access token oluştur
+            var accessToken = _jwtTokenService.GenerateToken(storedRefreshToken.UserId, "KullanıcıAdı"); // Kullanıcı bilgileri veritabanından alınabilir
+
+            // Refresh token'ı işaretleyin (örneğin, bir daha kullanılamayacak şekilde)
+            storedRefreshToken.IsUsed = true;
+            await _jwtTokenService.Update(storedRefreshToken);
+
+            return Ok(new { AccessToken = accessToken });
         }
 
     }

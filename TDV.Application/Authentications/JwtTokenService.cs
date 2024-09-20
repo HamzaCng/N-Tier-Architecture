@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -66,5 +67,10 @@ public class JwtTokenService : GenericRepository<RefreshToken>, IJwtTokenService
     public async Task SaveRefreshTokenAsync(RefreshToken token)
     {
         await _unitOfWork.RefreshTokens.AddAsync(token);
+    }
+
+    public async Task<RefreshToken> GetRefreshTokenAsync(string token)
+    {
+        return await _unitOfWork.RefreshTokens.Find(x => x.Token == token).SingleOrDefaultAsync();
     }
 }
