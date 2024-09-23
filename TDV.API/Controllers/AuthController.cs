@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.Data;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using TDV.Application.Shared.Authentications;
 using TDV.Entity.Entities.Authentications;
@@ -16,7 +17,7 @@ namespace TDV.API.Controllers
             _jwtTokenService = jwtTokenService;
         }
 
-        [HttpPost("login")]
+        [HttpPost("Login")]
         public async Task<IActionResult> LoginAsync([FromBody] Login request)
         {
             if (request.Username == "test" && request.Password == "1234")
@@ -39,7 +40,7 @@ namespace TDV.API.Controllers
         }
 
 
-        [HttpPost("refresh")]
+        [HttpPost("Refresh")]
         public async Task<IActionResult> Refresh([FromBody] RefreshRequest request)
         {
             var storedRefreshToken = await _jwtTokenService.GetRefreshTokenAsync(request.RefreshToken);
@@ -59,6 +60,12 @@ namespace TDV.API.Controllers
             return Ok(new { AccessToken = accessToken });
         }
 
+        [HttpGet("secret")]
+        [Authorize]
+        public IActionResult GetSecret()
+        {
+            return Ok("Bu endpoint'e sadece JWT ile ulaşılabilir!");
+        }
     }
 
 }
