@@ -14,12 +14,12 @@ namespace TDV.Core.Entities
         public bool IsUpdated { get; set; }
 
         /// <summary>
-        /// Updated user's Id, if this entity is deleted,
+        /// Updated user's Id, if this entity is updated,
         /// </summary>
         public long? IsUpdatedUser { get; set; }
 
-                /// <summary>
-        /// Updated time, if this entity is deleted,
+        /// <summary>
+        /// Updated time, if this entity is updated date,
         /// </summary>
         public DateTime? UpdatedTime { get; set; }
 
