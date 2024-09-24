@@ -30,7 +30,7 @@ namespace TDV.API.Middlewares
             var requestTime = DateTime.UtcNow;
 
             // Log verilerini NLog'a gönder
-            var logEvent = new LogEventInfo(LogLevel.Info, Logger.Name, "Request logged")
+            var logEvent = new LogEventInfo(LogLevel.Warn, Logger.Name, "Request logged")
             {
                 Properties =
                 {
