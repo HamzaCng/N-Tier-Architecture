@@ -11,20 +11,18 @@ using TDV.DataAccess.Context;
 using TDV.DataAccess.Repositories;
 using Microsoft.OpenApi.Models;
 using NLog.Web;
-using Microsoft.AspNetCore.Hosting;
 using NLog;
-using TDV.API.Extensions; // NLog'u ekleyin
+using TDV.API.Extensions; 
 
 var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger(); // NLog yapılandırması
 try
 {
-    logger.Debug("Uygulama başlıyor"); // Uygulama başlangıcında log atılıyor
+    logger.Debug("Uygulama başlıyor");
 
     var builder = WebApplication.CreateBuilder(args);
 
     var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 
-    // NLog'u ASP.NET Core ile entegre edin
     builder.Host.UseNLog();
 
     // Add services to the container.
@@ -133,5 +131,5 @@ catch (Exception ex)
 }
 finally
 {
-    LogManager.Shutdown(); // NLog'un düzgün kapanması için
+    LogManager.Shutdown(); // NLog'un düzgün kapanması için.
 }
