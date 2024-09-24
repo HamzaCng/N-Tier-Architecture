@@ -2,5 +2,13 @@
 
 #### N tier architecture, Generic Repository pattern & Unit of Work IOC 
 
-#### Code First Generation, Entity Framework ORM
+#### Code First Generation, Entity Framework ORM, Auto Mapper 
+
+#### Auth - JWT,  NLog - Mongodb, 
+
+
+
+
+
+
 
